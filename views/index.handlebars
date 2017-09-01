@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <div class="box header">
+        <div class="navbar">
+            <a id="txtOne" class="nav" href="/">
+                <p>Home</p>
+            </a>
+            <a id="txtTwo" class="nav" href="/saved">
+                <p>Saved Articles</p>
+            </a>
+            <a id="scrape" class="nav" href="/">
+                <p>Scrape</p>
+            </a>
+        </div>
+        <h2 class="headerText">ComingSoon.net TV News</h2>
+    </div>
+    <div class="box content">
+        {{#each bacon}}
+        <div class="articleWell">
+            <a class="picture" href="{{link}}" target="_blank" style="display: inline-block"><img src="{{image}}" style="height: 100px"/></a>
+            <a class="headline" href="{{link}}" target="_blank"><h3 style="display: inline-block; align-self: center;"> {{title}}</h3></a>
+            <div class="btns">
+                <button class="artBtn" id="noteBtn" data-id="{{_id}}">Notes</button>
+                {{#unless saved}}
+                <form action="/saved/{{_id}}" method="post">
+                    <button class="artBtn" id="saveBtn" type="submit">Save</button>
+                </form>
+                {{/unless}} {{#if saved}}
+                <form action="/saved/unsave/{{_id}}" method="post">
+                    <button class="artBtn" id="saveBtn" type="submit">UnSave</button>
+                </form>
+                {{/if}}
+                <form action="/delete/{{_id}}" method="post">
+                    <button class="artBtn" id="delBtn" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="box footer">Not a Sticky Footer
+    </div>
+    <div class="modal">modal
+    </div>
+</div>
