@@ -17,7 +17,13 @@ var SavePanel = React.createClass({
                      </div>
 
                      <div className="panel-body" id="well-section">
-                      {this.props.children}
+                       {this.props.saved.map(function(eggs, i) {
+                        
+                      return (
+                        <ArticleWell key={i} value={eggs} />
+                        
+                        );
+                       })}
                        </div>
                  </div>
           </div>

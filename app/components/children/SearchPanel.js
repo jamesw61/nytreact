@@ -2,6 +2,7 @@ var React = require("react");
 var Link = require("react-router").Link;
 var helpers = require("../utils/helpers");
 var ResultsPanel = require("./ResultsPanel");
+var SavePanel = require("./SavePanel");
 
 var SearchPanel = React.createClass({
    getInitialState: function() {
@@ -10,8 +11,26 @@ var SearchPanel = React.createClass({
       numResults: 1,
       startYear: "",
       endYear: "",
-      results: []
+      results: [],
+      saved: []
     };
+  },
+  // componentDidMount: function() {
+  //     console.log('component');
+  //     helpers.getSaved(function(data){
+  //       console.log('mount', data);
+  //       // this.setState({saved: data});
+  //     });
+  // },
+  componentDidMount: function() {
+    // Get the latest history.
+    helpers.getSaved().then(function(response) {
+      console.log(response);
+      // if (response !== this.state.history) {
+      //   console.log("History", response.data);
+      //   this.setState({ history: response.data });
+      // }
+    }.bind(this));
   },
   handleChange: function(event) {
     let newState = {};
@@ -45,6 +64,7 @@ var SearchPanel = React.createClass({
      }.bind(this));
 
   },
+  
 
   render: function() {
     return (
@@ -111,6 +131,7 @@ var SearchPanel = React.createClass({
         
       </div>
       <ResultsPanel results={this.state.results} />
+      <SavePanel saved={this.state.saved} />
       </div>
     );
   }

@@ -38,8 +38,15 @@ var helper = {
       }).catch(function (error) {
         // console.log(error);
       });
+  },
+  getSaved: function() {
+      return axios.get('/api/saved')
+      .then(function(response){
+        console.log('axios', response);
 
-
+      }).catch(function (error) {
+        console.log('err', error);
+      });
   }
 
 };
