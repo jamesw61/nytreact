@@ -1,17 +1,39 @@
 // Include React
 var React = require("react");
+var helpers = require("../../utils/helpers");
 
 var ArticleWell = React.createClass({
+  getInitialState: function() {
+    return {
+      article: {}
+    };
+  },
+   handleSave: function(){
+    console.log('button pressed');
+    // let newState = {};
+
+    // newState[event.target.id] = event.target.article;
+    
+    // console.log(article);
+    // console.log(newState);
+      helpers.saveArticle(this.props.value, function (data) {
+        console.log(data);
+      });
+       
+    
+  },
   render: function() {
     return (
-      <div className="panel panel-warning">
-        <div className="panel-heading">
-          <h3 className="panel-title">Article Title</h3>
-        </div>
-        <div className="panel-body">
-          <a href="">Article Link</a>
-          <p>August 31, 2017</p>
-        </div>
+      <div>
+          <h3 >{this.props.value.headline.main}</h3>
+          <p>{this.props.value.pub_date}</p>
+          <a>{this.props.value.web_url}</a>
+          <button onClick={this.handleSave} bacon={this.props.value}>Save</button>
+        
+        
+          
+          
+        
       </div>
     );
   }

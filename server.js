@@ -36,18 +36,18 @@ db.once("open", function() {
 });
 
 //handles getting and deleting articles from Mongo
-const news = require("./controllers/news-controller.js");
+// const news = require("./controllers/news-controller.js");
 //handles the scrape
-const scrape = require("./controllers/scrape-controller.js");
+// const scrape = require("./controllers/scrape-controller.js");
 //handles getting, adding, and deleting notes
-const notes = require("./controllers/notes-controller.js");
+// const notes = require("./controllers/notes-controller.js");
 //handles saving and unsaving articles
 const saved = require("./controllers/saved-controller.js");
 
-app.use("/", news);
-app.use("/scrape", scrape);
-app.use("/notes", notes);
-app.use("/saved", saved);
+// app.use("/", news);
+// app.use("/scrape", scrape);
+// app.use("/notes", notes);
+app.use("api/saved", saved);
 
 
 app.listen(port, function() {

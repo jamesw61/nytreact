@@ -34,26 +34,16 @@ module.exports = (
 
     <Route path="/" component={Main}>
 
-      {/* If user selects Child1 then show the appropriate component*/}
-      <Route path="/search" component={SearchPanel} >
+          <Route path="/search" component={SearchPanel} >
 
-        {/* Child1 has its own Grandchildren options */}
-        
+                  
 
-      </Route>
-
-      {/* If user selects Child2 then show the appropriate component*/}
-      <Route path="/results" component={ResultsPanel} >
-
-        <Route component={ArticleWell} />
-        {<IndexRoute component={ArticleWell} />}
-
-      </Route>
-      <Route path="/saved" component={SavePanel} >
-        <Route path="/well" component={ArticleWell} />
-      </Route>
-      {/* If user selects any other path... we get the Home Route */}
-      <IndexRoute component={SearchPanel} />
+          </Route>
+          <IndexRoute component={SearchPanel} />
+         
+          <Route path="/saved" component={SavePanel} >            
+          </Route>
+      
 
     </Route>
   </Router>

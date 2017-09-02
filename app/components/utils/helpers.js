@@ -29,6 +29,20 @@ var helper = {
       // If we don't get any results, return an empty string
       // return "";
     });
+  },
+  saveArticle: function (article){
+
+      axios.post('/api/saved', {
+        title: article.headline.main,
+        link: article.web_url,
+        date: article.pub_date
+      }).then(function(response){
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+
+
   }
 
 };

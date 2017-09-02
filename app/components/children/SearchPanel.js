@@ -1,16 +1,16 @@
-// Include React
 var React = require("react");
-// Including the Link component from React Router to navigate within our application without full page reloads
 var Link = require("react-router").Link;
 var helpers = require("../utils/helpers");
+var ResultsPanel = require("./ResultsPanel");
 
 var SearchPanel = React.createClass({
    getInitialState: function() {
     return {
       searchTerm: "",
-      numResults: 5,
+      numResults: 1,
       startYear: "",
-      endYear: ""
+      endYear: "",
+      results: []
     };
   },
   handleChange: function(event) {
@@ -33,63 +33,22 @@ var SearchPanel = React.createClass({
 
      helpers.runQuery(searchTerm, numResults, startYear, endYear).then(function(data) {
         for (let i = 0; i < numResults; i++) {
-          console.log('xx', data[i].headline.main);
+          // console.log('xx', data[i]);
+          // console.log('************************');
+          // console.log('headliine', data[i].headline.main);          
+          // console.log('link:', data[i].web_url);
+          // console.log('date', data[i].pub_date);
+          // console.log('************************');
         }
-     });
-    // const repo = event.target.elements[1].value
-    // const path = `/repos/${userName}/${repo}`
-    // this.context.router.push(path)
-    // console.log(path)
+        this.setState({results: data});
+        // console.log('searchPanel', this.state.results);
+     }.bind(this));
+
   },
 
   render: function() {
     return (
-//         <div className="row">
-//             <div className="col-sm-12">
-        
-//               <div className="panel panel-primary">
-//           <div className="panel-heading">
-//             <h3 className="panel-title"><strong><i className="fa  fa-list-alt"></i>   Search Parameters</strong></h3>
-//           </div>
-//           <div className="panel-body">
-
-//             <form onSubmit={this.handleSubmit} role="form">
-
-//               <div className="form-group">
-//                 <label for="search">Search Term:</label>
-//                 <input type="text" className="form-control" id="searchTerm" />
-//               </div>
-
-//               <div className="form-group">
-//                 <label for="pwd">Number of Records to Retrieve:</label>
-//                 <select className="form-control" id="num-records-select">
-//               <option value="1">1</option>
-//               <option value="5" selected>5</option>
-//               <option value="10">10</option>
-//             </select>
-//               </div>
-
-//               <div className="form-group">
-//                 <label for="start-year">Start Year (Optional):</label>
-//                 <input type="text" className="form-control" id="start-year" />
-//               </div>
-
-//               <div className="form-group">
-//                 <label for="end-year">End Year (Optional):</label>
-//                 <input type="text" className="form-control" id="end-year" />
-//               </div>
-
-//               <button type="submit" className="btn btn-default" id="run-search"><i className="fa fa-search"></i> Search</button>
-//               <button type="button" className="btn btn-default" id="clear-all"><i className="fa fa-trash"></i> Clear Results</button>
-
-//             </form>
-//           </div>
-//         </div>
-//       </div>
-//     </div>   
-//     );
-//   }
-// });
+      <div>
   <div className="panel panel-default">
         <div className="panel-heading">
           <h3 className="panel-title text-center">Article Search</h3>
@@ -148,6 +107,10 @@ var SearchPanel = React.createClass({
             </div>
           </form>
         </div>
+        
+        
+      </div>
+      <ResultsPanel results={this.state.results} />
       </div>
     );
   }
@@ -155,23 +118,3 @@ var SearchPanel = React.createClass({
 
 module.exports = SearchPanel;
 
-   // <div className="container">
-   //      <div className="col-lg-12">
-   //        <div className="panel panel-primary">
-   //          <div className="panel-heading">
-   //            <h3 className="panel-title">Search</h3>
-   //          </div>
-   //          <div className="panel-body">
-   //            <p>I'm child 1!</p>
-   //            <p>
-   //              <Link to="/Child1/GrandChild1"><button className="btn btn-warning btn-sm">Show Grandchild #1</button></Link>
-   //              <Link to="/Child1/GrandChild2"><button className="btn btn-success btn-sm">Show Grandchild #2</button></Link>
-   //            </p>
-
-   //            {/* This code will allow us to automatically dump the correct GrandChild component */}
-   //            {this.props.children}
-   //          </div>
-
-   //        </div>
-   //      </div>
-   //    </div>

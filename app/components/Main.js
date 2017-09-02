@@ -4,7 +4,7 @@ var React = require("react");
 var Link = require("react-router").Link;
 
 var Main = React.createClass({
-
+ 
   // Here we render the function
   render: function() {
 
@@ -15,17 +15,7 @@ var Main = React.createClass({
               <h1 className="text-center"><strong><i className="fa fa-newspaper-o"></i> New York Times Search</strong></h1>
         </div>
 
-        <div className="jumbotron">
-         
-          
-          <p>
-            <Link to="/search"><button className="btn btn-primary btn-lg">Search</button></Link>
-            <Link to="/results"><button className="btn btn-danger btn-lg">Results</button></Link>
-            <Link to="/saved"><button className="btn btn-danger btn-lg">Saved Articles</button></Link>
-
-          </p>
-        </div>
-
+ 
         <div className="row">
 
           {/* This code will dump the correct Child Component */}
