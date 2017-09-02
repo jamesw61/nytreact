@@ -4,7 +4,7 @@ var Article = require("../models/Article.js");
 
 
 router.post("/", function(req, res) {
-	console.log(req.body);
+	console.log('x', req.body);
   var entry = new Article(req.body);
 
   entry.save(function(error, doc) {
@@ -18,13 +18,13 @@ router.post("/", function(req, res) {
 });
 
 router.get("/", function(req, res) {
-  Article.find({}).sort({"_id": 1}).limit(20)
+  Article.find({}).sort({"date": 1})
         .exec(function(error, doc) {
             if (error) {
                 console.log(error);
             }
             else {
-                // res.render("index", { bacon: doc });
+                res.json(doc);
             }
         });
 });

@@ -11,7 +11,7 @@ var ArticleWell = React.createClass({
    handleSave: function(){
     console.log('button pressed');
     // let newState = {};
-
+    console.log('handleSave', this.props.value.headline.main);
     // newState[event.target.id] = event.target.article;
     
     // console.log(article);
@@ -27,7 +27,7 @@ var ArticleWell = React.createClass({
       <div>
           <h3 >{this.props.value.headline.main}</h3>
           <p>{this.props.value.pub_date}</p>
-          <a>{this.props.value.web_url}</a>
+          <a>{this.props.value.web_url}</a><br></br>
           <button onClick={this.handleSave} bacon={this.props.value}>Save</button>
         
         

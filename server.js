@@ -12,15 +12,16 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb://heroku_ggtmz2k5:6hg8i2854cm45chmmf1s3aougt@ds121674.mlab.com:21674/heroku_ggtmz2k5");
+// mongoose.connect("mongodb://heroku_ggtmz2k5:6hg8i2854cm45chmmf1s3aougt@ds121674.mlab.com:21674/heroku_ggtmz2k5");
 
-// mongoose.connect("mongodb://localhost/nytreact", {
-//   useMongoClient: true
-// });
+mongoose.connect("mongodb://localhost/nytreact", {
+  useMongoClient: true
+});
 
 var db = mongoose.connection;
 
@@ -36,7 +37,7 @@ db.once("open", function() {
 const saved = require("./controllers/saved-controller.js");
 
 
-app.use("api/saved", saved);
+app.use("/api/saved", saved);
 
 
 app.listen(port, function() {
