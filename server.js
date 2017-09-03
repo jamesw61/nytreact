@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(bodyParser.json());
-// app.use(bodyParser.text());
-// app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(express.static("public"));
 
@@ -25,7 +25,7 @@ mongoose.connect("mongodb://heroku_ggtmz2k5:6hg8i2854cm45chmmf1s3aougt@ds121674.
 //   useMongoClient: true
 // });
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on("error", function(error) {
   console.log("Mongoose Error: ", error);

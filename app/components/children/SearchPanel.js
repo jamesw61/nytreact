@@ -12,26 +12,32 @@ var SearchPanel = React.createClass({
       startYear: "",
       endYear: "",
       results: [],
-      saved: []
+      savedResultsFromMongo: []
     };
   },
-  // componentDidMount: function() {
-  //     console.log('component');
-  //     helpers.getSaved(function(data){
-  //       console.log('mount', data);
-  //       // this.setState({saved: data});
-  //     });
-  // },
+
   componentDidMount: function() {
-    // Get the latest history.
     helpers.getSaved().then(function(response) {
-      console.log(response);
-      // if (response !== this.state.history) {
-      //   console.log("History", response.data);
-      //   this.setState({ history: response.data });
-      // }
+      let savedArray = [];
+
+      for(let i=0; i< response.data.length; i++){
+        let transformedSaveData = {
+          "headline": {
+            "main": response.data[i].title
+          },
+          "pub_date": response.data[i].date,
+          "web_url": response.data[i].link
+        };
+        savedArray.push(transformedSaveData);
+
+      }
+    this.setState({savedResultsFromMongo: savedArray});
+  
     }.bind(this));
+
+
   },
+
   handleChange: function(event) {
     let newState = {};
     newState[event.target.id] = event.target.value;
@@ -39,7 +45,6 @@ var SearchPanel = React.createClass({
   },
   handleSubmit: function(event) {
     event.preventDefault(); 
-    
     let searchTerm = this.state.searchTerm;
     let numResults = this.state.numResults;
     let startYear = this.state.startYear;
@@ -51,16 +56,8 @@ var SearchPanel = React.createClass({
     console.log('end Year', endYear);
 
      helpers.runQuery(searchTerm, numResults, startYear, endYear).then(function(data) {
-        for (let i = 0; i < numResults; i++) {
-          // console.log('xx', data[i]);
-          // console.log('************************');
-          // console.log('headliine', data[i].headline.main);          
-          // console.log('link:', data[i].web_url);
-          // console.log('date', data[i].pub_date);
-          // console.log('************************');
-        }
+        
         this.setState({results: data});
-        // console.log('searchPanel', this.state.results);
      }.bind(this));
 
   },
@@ -81,11 +78,7 @@ var SearchPanel = React.createClass({
                 <strong>Search Term</strong>
               </h4>
 
-              {/*
-                Note how each of the form elements has an id that matches the state.
-                This is not necessary but it is convenient.
-                Also note how each has an onChange event associated with our handleChange event.
-              */}
+
               <input type="text"
                 className="form-control text-center"
                 id="searchTerm"
@@ -131,7 +124,8 @@ var SearchPanel = React.createClass({
         
       </div>
       <ResultsPanel results={this.state.results} />
-      <SavePanel saved={this.state.saved} />
+      <SavePanel saved={this.state.savedResultsFromMongo} />
+
       </div>
     );
   }

@@ -18,6 +18,7 @@ router.post("/", function(req, res) {
 });
 
 router.get("/", function(req, res) {
+  // console.log('save route');
   Article.find({}).sort({"date": 1})
         .exec(function(error, doc) {
             if (error) {

@@ -40,13 +40,13 @@ var helper = {
       });
   },
   getSaved: function() {
-      return axios.get('/api/saved')
-      .then(function(response){
-        console.log('axios', response);
+      return axios.get('/api/saved');
+      // .then(function(response){
+      //   console.log('axios', response);
 
-      }).catch(function (error) {
-        console.log('err', error);
-      });
+      // }).catch(function (error) {
+      //   console.log('err', error);
+      // });
   }
 
 };
