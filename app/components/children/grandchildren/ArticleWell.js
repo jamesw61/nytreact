@@ -13,13 +13,21 @@ var ArticleWell = React.createClass({
        
     
   },
+  handleDelete: function(){
+      helpers.deleteArticle(this.props.value._id);
+  },
   render: function() {
     return (
-      <div>
+      <div className="well">
           <h3 >{this.props.value.headline.main}</h3>
           <p>{this.props.value.pub_date}</p>
           <a>{this.props.value.web_url}</a><br></br>
-          <button onClick={this.handleSave} bacon={this.props.value}>Save</button>
+          <button onClick={this.handleSave}>Save</button>
+          <button onClick={this.handleDelete}>Delete</button>
+                        
+                          
+
+
         
       </div>
     );

@@ -21,10 +21,10 @@ var SavePanel = React.createClass({
                      <div className="panel-body" id="well-section">
                        {this.props.saved.map(function(eggs, i) {
                         
-                      return (
-                        <ArticleWell key={i} value={eggs} />
+                          return (
+                                    <ArticleWell key={i} value={eggs} />
                         
-                        );
+                                  );
                        })}
                        </div>
                  </div>

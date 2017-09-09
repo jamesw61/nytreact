@@ -26,7 +26,8 @@ var SearchPanel = React.createClass({
             "main": response.data[i].title
           },
           "pub_date": response.data[i].date,
-          "web_url": response.data[i].link
+          "web_url": response.data[i].link,
+          "_id":response.data[i]._id
         };
         savedArray.push(transformedSaveData);
 
@@ -37,6 +38,8 @@ var SearchPanel = React.createClass({
 
 
   },
+
+
 
   handleChange: function(event) {
     let newState = {};

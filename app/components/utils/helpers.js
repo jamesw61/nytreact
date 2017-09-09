@@ -47,6 +47,15 @@ var helper = {
       // }).catch(function (error) {
       //   console.log('err', error);
       // });
+  }, 
+  deleteArticle: function(id) {
+    axios.post("/api/saved/delete/", {"_id": id});
+    // .then(function(response){
+    //   console.log('helpers', id);
+    //     console.log(response);
+    //   }).catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
 };

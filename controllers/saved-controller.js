@@ -30,4 +30,17 @@ router.get("/", function(req, res) {
         });
 });
 
+router.post("/delete", function(req, res) {
+        console.log('body', req.body._id);
+        Article.remove({ "_id": req.body._id})
+        .exec(function(err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+               // res.redirect("/"); 
+            }
+        });
+});
+
 module.exports = router;
