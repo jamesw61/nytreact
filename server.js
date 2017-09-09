@@ -19,11 +19,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 
-// mongoose.connect("mongodb://heroku_ggtmz2k5:6hg8i2854cm45chmmf1s3aougt@ds121674.mlab.com:21674/heroku_ggtmz2k5");
+mongoose.connect("mongodb://heroku_ggtmz2k5:6hg8i2854cm45chmmf1s3aougt@ds121674.mlab.com:21674/heroku_ggtmz2k5");
 
-mongoose.connect("mongodb://localhost/nytreact", {
-  useMongoClient: true
-});
+// mongoose.connect("mongodb://localhost/nytreact", {
+//   useMongoClient: true
+// });
 
 const db = mongoose.connection;
 
